@@ -85,6 +85,12 @@ $color-toggle-hover: #060;
 	pointer-events: inherit;
 }
 
+.menu-header-container {
+	display: flex;
+	flex: 1 0 auto;
+	padding: 20vh 0 20vh 0;
+}
+
 .site-navigation {
 	display: flex;
 	position: fixed;
@@ -97,7 +103,10 @@ $color-toggle-hover: #060;
 
 	.menu {
 		flex: 1 0 auto;
-		padding: 20vh 0 20vh 0;
+		padding: 0 3em; margin: 0;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
 
 		@include bp(mobile) {
 			//padding: 20vh 0 0 0;
@@ -105,14 +114,6 @@ $color-toggle-hover: #060;
 
 		&, ul {
 			display: flex;
-		}
-
-		ul {
-			flex: 1 0 auto;
-			padding: 0 3em; margin: 0;
-			flex-direction: column;
-			justify-content: center;
-			align-items: center;
 		}
 
 		li {
