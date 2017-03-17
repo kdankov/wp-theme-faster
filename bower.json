@@ -1,0 +1,22 @@
+{
+  "name": "faster",
+  "description": "",
+  "main": "index.html",
+  "authors": [
+    "Konstantin Dankov"
+  ],
+  "license": "ISC",
+  "moduleType": [],
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ],
+  "dependencies": {
+  },
+  "devDependencies": {
+    "mathsass": "~0.9.5"
+  }
+}

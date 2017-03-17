@@ -1,0 +1,149 @@
+$color-toggle: #ccc;
+$color-toggle-hover: #060;
+
+.navigation-toggle {
+	line-height: 1.75;
+	position: fixed;
+	top: 6.5rem;
+	//background: #CCC;
+	width: 2.5em;
+	height: 2.5em;
+	z-index: 120;
+	cursor: pointer;
+	right: 10vmax;
+
+	@include bp(mobile) {
+		top: 4.5rem;
+		right: 3.2rem;
+	}
+
+	@include bp(phone) {
+		top: 4rem;
+		right: 2.5rem;
+	}
+
+	@include bp(laptop) {
+		right: calc( ( ( 100vw - 66em ) / 2 ) * 1 );
+		right: 10vmax;
+	}
+
+	@include bp(desktop) {
+		right: calc( ( ( 100vw - 66em ) / 2 ) * 1 );
+	}
+
+	@include bp(large) {
+		top: 8rem;
+	}
+
+	&:before,
+	&:after {
+		display: block;
+		content: '';
+		width: 1em;
+		height: 1em;
+		background: $color-toggle;
+		position: absolute;
+		border-radius: 30%;
+		box-shadow: 1.5em 0 0 0 $color-toggle;
+		transition: all 0.3s ease-out;
+	}
+
+	&:after {
+		bottom: 0;
+	}
+
+	&.left {
+		left: 0;
+		right: 0em;
+		display: none;
+	}
+
+	.home & {
+		position: absolute;
+		top: 50%;
+		right: 0;
+		transform: translateY(-50%);
+
+		&.left {
+			display: block;
+		}
+	}
+	
+
+	&:hover {
+		&:before,
+		&:after {
+			background: $color-toggle-hover;
+			box-shadow: 1.5em 0 0 0 $color-toggle-hover;
+		}
+	}
+}
+
+
+#toggle-navigation:checked + .site-navigation {
+	opacity: 1;
+	pointer-events: inherit;
+}
+
+.site-navigation {
+	display: flex;
+	position: fixed;
+	left: 0; top: 0; right: 0; bottom: 0;
+	background: rgba(white, 0.95);
+	z-index: 100;
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity 0.3s ease-in-out;
+
+	.menu {
+		flex: 1 0 auto;
+		padding: 20vh 0 20vh 0;
+
+		@include bp(mobile) {
+			//padding: 20vh 0 0 0;
+		}
+
+		&, ul {
+			display: flex;
+		}
+
+		ul {
+			flex: 1 0 auto;
+			padding: 0 3em; margin: 0;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+		}
+
+		li {
+			width: 100%;
+			display: block;
+			padding: 0.5em 0;
+			text-align: center;
+		}
+
+		a {
+			display: inline-block;
+			font-size: 1.5em;
+			padding: 0.8em 0;
+
+			&:after {
+				bottom: 1.10em;
+			}
+			
+			@include bp(mobile) {
+				font-size: 1.1em;
+				display: block;
+				background: #EEE;
+				padding: 0.5em 1.2em;
+				text-shadow: none;
+				transition: none;
+
+				&:active {
+					background: #060;
+					color: #FFF;
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,252 @@
+$borderSize: 1px;
+$borderRadius: 0.3em;
+$borderColor: #CCC;
+
+.border {
+	border: solid $borderSize $borderColor;
+
+	&-top {
+		border-top: solid $borderSize $borderColor;
+	}
+
+	&-bottom {
+		border-bottom: solid $borderSize $borderColor;
+	}
+
+	&-radius {
+		border-radius: $borderRadius;
+	}
+}
+
+$shadowSize: 4px;
+$shadowColor: rgba(0,0,0,0.1);
+
+.shadow { 
+	box-shadow: 0 0 $shadowSize*2 $shadowColor;
+
+	&-top {
+		box-shadow: 0 $shadowSize/2*-1 $shadowSize/2 $shadowColor;
+	}
+
+	&-bottom {
+		box-shadow: 0 $shadowSize/2 $shadowSize/2 $shadowColor;
+	}
+	
+	&-inset {
+		box-shadow: 0 0 $shadowSize $shadowColor inset;
+	}
+}
+
+/*
+ * Landing pages
+ * */
+.landing-sections {
+	display: flex;
+	flex-wrap: wrap;
+	background: rgba(255,255,255,0.2);
+	padding: 1em;
+	margin: 4em 0 2em 0;
+	@extend .shadow;
+
+	&, & > section {
+		border-radius: 4px;
+	}
+
+	i, & > section {
+		display: block;
+	}
+
+	&.bigger > section {
+		width: 33.33%;
+	}
+
+	& > section {
+		width: 25%;
+		min-height: 9em;
+		color: #FFF;
+		flex: 1 1 auto;
+		order: 1;
+		border: solid 1em transparent;
+		background-color: rgba(255,255,255,0.2);
+		background-clip: padding-box;
+		position: relative;
+		overflow: hidden;
+
+		@extend .shadow-inset;
+
+		&:hover {
+			background-color: rgba(255,255,255,0.4);
+		}
+
+		& > a {
+			top: 0; right: 0; left: 0; bottom: 0;
+			color: #FFF;
+
+			&, i, span {
+				position: absolute;
+			}
+
+			i {
+				font-size: 2.5em;
+				top: 0.5em; right: 0.5em;
+			}
+
+			span {
+				bottom: 1em; left: 1em;
+			}
+
+		}
+
+		.button {
+			opacity: 0;
+			position: absolute;
+			bottom: 0.5em; right: 0.5em;
+			transform: translateY(150%);
+			transition: all 0.3s ease-out;
+			@extend .shadow;
+		}
+
+		&.active {
+			width: 100%;
+			background-color: rgba(0,0,0,0.2);
+			height: 15.5em;
+			order: 0;
+			
+			.button {
+				opacity: 1;
+				transform: translateY(0);
+			}
+
+			a span {
+				top: 0.5em;
+				font-size: 2em;
+			}
+
+			i {
+				font-size: 4.5em;
+			}
+
+			ul { 
+				visibility: visible;
+				
+				li { opacity: 1; }
+			}
+		}
+	}
+
+
+	ul {
+		position: absolute;
+		visibility: hidden;
+		padding: 4.5em 2em 0 2em;
+		pointer-events: none;
+
+		li {
+			opacity: 0;
+			transition: opacity 0.3s ease-in;
+		}
+
+		$i: 9;
+		@while $i > 0 {
+			li:nth-child(#{$i}) { transition-delay: #{$i*0.3}s; }
+			$i: $i - 1;
+		}
+	}
+}
+
+/*
+ * Grid of icons with a slider?!
+ * */
+.icongrid {
+	position: relative;
+	display: flex;
+	display: none;
+	align-content: stretch;
+	border-radius: 4px;
+	@extend .shadow;
+
+	a {
+		display: inline-block;
+		flex: 1 1 100%;
+		border-left: 1px solid rgba(0,0,0,0.2);
+		color: #333;
+		background: #fff;
+		position: relative;
+		min-height: 7rem;
+		transition: flex 0.3s ease-in;
+
+		i {
+			display: block;
+			font-size: 2em;
+			margin-bottom: 0.5em;
+			position: absolute;
+			right: 1rem;
+			top: 0.8rem;
+			color: #999;
+		}
+
+		span {
+			position: absolute;
+			bottom: 0.8rem;
+			left: 1rem;
+			line-height: 1.1;
+			color: #666;
+		}
+
+		&:hover, &.active, &:active {
+			/*background: linear-gradient(45deg, lighten(#517fa4, 15) , lighten(#243949, 30));*/
+			background: lighten(#243949, 75);
+			outline: none;
+
+			span, i {
+				color: #333;
+				text-shadow: 1px 1px #FFF;
+			}
+
+			i {
+				color: lighten(#243949, 10);
+				font-size: 3em;
+			}
+		}
+
+		&.active:after {
+			display: block;
+			content: '';
+			background: lighten(#243949, 75);
+			width: 100%;
+			height: 10px;
+			position: absolute;
+			bottom: -10px; left: 0;
+
+		}
+
+		&:first-child {
+			border-left-width: 0;
+		}
+
+
+	}
+
+	div:first-child,
+	div:last-child {
+		@extend a;
+		@extend a.active;
+		flex: 0 1 30%;
+
+		i {
+			top: 50%;
+			left: 35%;
+			transform: translateY(-50%);
+		}
+
+		&:hover {
+			background: currentColor;
+			cursor: pointer;
+
+			i { color: #FFF; text-shadow: none; }
+		}
+		&:after { display: none; }
+	}
+}
+
+

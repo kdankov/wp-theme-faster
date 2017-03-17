@@ -1,0 +1,28 @@
+/*
+ * Inheriting box-sizing Probably Slightly Better Best-Practice
+ * https://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/
+ * --- */
+
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+/*
+ * Very simple reset 
+ * --- */
+
+* {
+	padding: 0;
+	margin: 0;
+} 
+
+/*
+ * Hide notification for Autoprefixer
+ * --- */
+#__bs_notify__ {
+	display: none !important;
+}
