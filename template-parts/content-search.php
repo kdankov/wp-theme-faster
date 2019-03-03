@@ -1,8 +1,8 @@
 <?php
 /**
- * Template part for displaying results in search pages.
+ * Template part for displaying results in search pages
  *
- * @link https://codex.wordpress.org/Template_Hierarchy
+ * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
  * @package Faster
  */
@@ -15,16 +15,21 @@
 
 		<?php if ( 'post' === get_post_type() ) : ?>
 		<div class="entry-meta">
-			<?php faster_posted_on(); ?>
-		</div><!-- .entry-meta -->
+			<?php
+			faster_posted_on();
+			faster_posted_by();
+			?>
+		</div>
 		<?php endif; ?>
-	</header><!-- .entry-header -->
+	</header>
+
+	<?php faster_post_thumbnail(); ?>
 
 	<div class="entry-summary">
 		<?php the_excerpt(); ?>
-	</div><!-- .entry-summary -->
+	</div>
 
 	<footer class="entry-footer">
 		<?php faster_entry_footer(); ?>
-	</footer><!-- .entry-footer -->
-</article><!-- #post-## -->
+	</footer>
+</article><!-- #post-<?php the_ID(); ?> -->
