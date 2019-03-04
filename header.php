@@ -37,8 +37,10 @@ $faster_description = get_bloginfo( 'description', 'display' );
 			<?php endif; ?>
 		</div>
 
-		<label class="menu-toggle-label"><?php esc_html_e( 'Menu', 'faster' ); ?></label>
+		<label for="menu-toggle-input" class="menu-toggle-label"><?php esc_html_e( 'Menu', 'faster' ); ?></label>
 		<nav id="site-navigation" class="main-navigation">
 			<?php wp_nav_menu( array( 'theme_location' => 'menu-1', 'menu_id' => 'primary-menu' ) ); ?>
 		</nav>
 	</header>
+
+	<main id="main" class="site-content">

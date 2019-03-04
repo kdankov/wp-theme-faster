@@ -4,38 +4,64 @@ var browserSync = require('browser-sync').create();
 var $ = require('gulp-load-plugins')();
 
 var path = {
-	SCSS_SRC	: './sass/**/*.scss',
-	SCSS_DST	: './css',
+	source : {
+		scss : "./assets/src/scss/**/*.scss",
+		php : "./**/*.php"
+	},
+	dist : {
+		scss : "./assets/dist/css",
+	}
 }
 
-gulp.task('sass', function () {
+gulp.task('sass-dev', function () {
 
-	gulp.src( path.SCSS_SRC )
-		.pipe($.plumber({errorHandler: $.notify.onError("Error: <%= error.message %>")}))
+	return gulp
+		.src( path.source.scss )
+		.pipe($.size({ showFiles: true }))
+		.pipe($.plumber({ errorHandler: $.notify.onError("Error: <%= error.message %>") }))
 		.pipe($.sourcemaps.init())
+		.pipe($.sassLint())
+		.pipe($.sassLint.format())
+		.pipe($.sassLint.failOnError())
 		.pipe($.sass())
 		.pipe($.autoprefixer({ browsers: ['last 2 versions'], cascade: false }))
-		.pipe($.cssnano())
-		.pipe($.sourcemaps.write('css'))
 		.pipe($.size({ showFiles: true }))
-		.pipe(gulp.dest( path.SCSS_DST ))
+		.pipe($.sourcemaps.write('css'))
+		.pipe(gulp.dest( path.dist.scss ))
+		.pipe(browserSync.stream({ match: '**/*.css' }))
+	;
+
+});
+
+gulp.task('sass-build', function () {
+
+	return gulp
+		.src( path.source.scss )
+		.pipe($.size({ showFiles: true }))
+		.pipe($.plumber({ errorHandler: $.notify.onError("Error: <%= error.message %>") }))
+		.pipe($.sass({ outputStyle: 'compressed' }))
+		.pipe($.size({ showFiles: true }))
+		.pipe($.autoprefixer({ browsers: ['last 2 versions'], cascade: false }))
+		.pipe($.size({ showFiles: true }))
+		.pipe($.cssnano())
+		.pipe($.size({ showFiles: true }))
+		.pipe(gulp.dest( path.dist.scss ))
 		.pipe(browserSync.stream({ match: '**/*.css' }))
 	;
 
 });
 
 // Static Server + watching scss/html files
-gulp.task('serve', ['sass'], function() {
+gulp.task('serve', function() {
 
 	browserSync.init({
-		proxy: "http://lazytype"
+		proxy: "http://faster.wp"
 	});
 
-	gulp.watch( path.SCSS_SRC, ['sass']);
-    gulp.watch("./**/*.php").on('change', browserSync.reload);
+	gulp.watch( path.source.scss, gulp.series("sass-dev"));
+    gulp.watch( path.source.php ).on('change', browserSync.reload);
 
 });
 
 // Creating a default task
-gulp.task('default', ['sass', 'serve']);
-
+gulp.task("default", gulp.series("sass-dev", "serve"));

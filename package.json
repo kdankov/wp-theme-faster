@@ -2,26 +2,25 @@
   "name": "faster",
   "version": "0.0.1",
   "description": "",
-  "main": "index.js",
-  "dependencies": {
-    "gulp": "",
-    "gulp-util": "",
-    "gulp-load-plugins": ""
-  },
+  "main": "",
+  "dependencies": {},
   "devDependencies": {
-    "browser-sync": "",
     "gulp": "",
+    "browser-sync": "",
+    "fancy-log": "",
+    "gulp-load-plugins": "",
     "gulp-autoprefixer": "",
     "gulp-changed": "",
     "gulp-cssnano": "",
     "gulp-notify": "",
     "gulp-plumber": "",
     "gulp-sass": "",
+    "gulp-sass-lint": "",
     "gulp-size": "",
     "gulp-sourcemaps": ""
   },
   "scripts": {
-    "setup": "npm install && bower install",
+    "setup": "npm install",
     "start": "gulp"
   },
   "author": "Konstantin Dankov",

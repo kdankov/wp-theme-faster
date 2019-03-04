@@ -7,7 +7,9 @@ html {
   box-sizing: border-box;
 }
 
-*, *:before, *:after {
+*,
+*:before,
+*:after {
   box-sizing: inherit;
 }
 
@@ -23,6 +25,6 @@ html {
 /*
  * Hide notification for Autoprefixer
  * --- */
-#__bs_notify__ {
-	display: none !important;
-}
+//#__bs_notify__ {
+	//display: none !important;
+//}

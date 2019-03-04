@@ -3,22 +3,22 @@
  */
 
 @import "variables";
-@import "responsive";
 
-@import "reset";
+@import "00_mixins/functions";
+@import "00_mixins/responsive";
 
-@import "typography";
+@import "01_modules/reset";
+@import "01_modules/typography";
+@import "01_modules/forms";
 
-@import "buttons";
-@import "forms";
+@import "02_elements/elements";
+@import "02_elements/buttons";
 
-@import "navigation";
-@import "elements";
+@import "03_components/navigation";
+@import "03_components/gallery";
 
-@import "layout";
-@import "sections";
+@import "04_global/layout";
 
-@import "pages";
-@import "contacts";
-@import "gallery";
-@import "home";
+@import "05_pages/pages";
+@import "05_pages/contacts";
+@import "05_pages/home";

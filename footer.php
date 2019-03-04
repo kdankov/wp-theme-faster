@@ -11,11 +11,13 @@
 
 ?>
 
-<footer id="colophon" class="site-footer">
-	<!-- TODO: Footer stuff in customizer -->
-</footer><!-- #colophon -->
+	</main>
 
-<?php wp_footer(); ?>
+	<footer id="colophon" class="site-footer">
+		<!-- TODO: Footer stuff in customizer -->
+	</footer><!-- #colophon -->
+
+	<?php wp_footer(); ?>
 
 </body>
 </html>

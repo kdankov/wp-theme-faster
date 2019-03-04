@@ -74,7 +74,7 @@ add_action( 'widgets_init', 'faster_widgets_init' );
  */
 function faster_scripts() {
 
-	wp_enqueue_style( 'faster-styles', get_template_directory_uri() . '/assets/dist/css/theme.css' );
+	wp_enqueue_style( 'faster-styles', get_template_directory_uri() . '/assets/dist/css/site.css' );
 
 }
 add_action( 'wp_enqueue_scripts', 'faster_scripts' );

@@ -1,0 +1,29 @@
+table {
+	width: 100%;
+	table-layout: fixed;
+	margin-bottom: 1.5em;
+	border-spacing: 0px;
+	border-collapse: collapse;
+
+	tbody tr:nth-child(even) td {
+
+	}
+
+	th,
+	td { 
+		padding: 0.3em 0.6em;
+		border: solid #655f52;
+		border-width: 0 1px 1px 0;
+
+		&:last-child {
+			border-right-width: 0;
+		}
+	}
+
+	tbody tr:last-child td {
+		border-bottom-width: 0;
+	}
+
+	th { text-align: left;  }
+}
+
